@@ -8,6 +8,7 @@ const URL ="https://raw.githubusercontent.com/getfutureproof/fp_study_notes_hell
 function App() {
   const[students, setStudents] = useState([]) ;
   const[cohort, setCohort] = useState('') ;
+  const[search, setSearch] = useState('') ;
 
   useEffect(() => {
 
@@ -32,10 +33,15 @@ const renderedStudents = students.map(st => {
 })
 
 const onInputChange = (e) => {
-console.log(e.target.value)
+setCohort(e.target.value)
 }
   // console.log(students)
 
+  const onFormSubmit = (e) => {
+    e.preventDefault()  // prevent default behaviour when form is submitted that refeshes the page
+    setSearch(cohort)
+    setCohort('')
+  }
 
   return (
     <div className="App">
@@ -45,7 +51,7 @@ console.log(e.target.value)
          {renderedStudents}
          </ul>
 
-         <form>
+         <form onSubmit={onFormSubmit}>
           <label htmlFor="cohort">Cohort</label>
           <input 
           type="text" 
