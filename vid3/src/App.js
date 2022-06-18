@@ -7,7 +7,7 @@ const URL ="https://raw.githubusercontent.com/getfutureproof/fp_study_notes_hell
 
 function App() {
   const[students, setStudents] = useState([]) ;
-
+  const[cohort, setCohort] = useState('') ;
 
   useEffect(() => {
 
@@ -26,24 +26,33 @@ function App() {
 const renderedStudents = students.map(st => {
   return (
   <li key={st.github}>{st.name}</li>
+
   )
   
 })
 
-  console.log(students)
+const onInputChange = (e) => {
+console.log(e.target.value)
+}
+  // console.log(students)
 
 
   return (
     <div className="App">
       <header className="App-header">
        <ul>
-         {/* App Component */}
+         
          {renderedStudents}
          </ul>
 
          <form>
           <label htmlFor="cohort">Cohort</label>
-          <input type="text" id="cohort" />
+          <input 
+          type="text" 
+          id="cohort" 
+          value={cohort} 
+          onChange={onInputChange}
+          />
          </form>
       </header>
     </div>
