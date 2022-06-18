@@ -24,7 +24,9 @@ function App() {
   }, [])
 
 const renderedStudents = students.map(st => {
-  return (<li>{st.name}</li>)
+  return (
+  <li key={st.github}>{st.name}</li>
+  )
   
 })
 
@@ -38,6 +40,11 @@ const renderedStudents = students.map(st => {
          {/* App Component */}
          {renderedStudents}
          </ul>
+
+         <form>
+          <label htmlFor="cohort">Cohort</label>
+          <input type="text" id="cohort" />
+         </form>
       </header>
     </div>
   );
