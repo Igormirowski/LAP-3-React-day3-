@@ -70,8 +70,10 @@ setCohort(e.target.value)
   return (
     <div className="App">
       <header className="App-header">
+       <h3>
+        {  statusMessage? statusMessage : '' }
+       </h3>
        <ul>
-         
          {renderedStudents}
          </ul>
 
