@@ -25,6 +25,7 @@ try {
   console.log('I was mouted')
   setStudents(data.students)
   setStatusMeassage('')
+  setError('')
 } catch (err) {
   console.log(err)
   setError(err)
@@ -70,12 +71,13 @@ setCohort(e.target.value)
   return (
     <div className="App">
       <header className="App-header">
-       <h3>
-        {  statusMessage? statusMessage : '' }
-       </h3>
-       <ul>
-         {renderedStudents}
-         </ul>
+        { error
+         ? <h1> Sorry we could not find a(n) {search} cohort </h1> 
+         : <div>
+          <h3> {  statusMessage? statusMessage : '' } </h3>
+          <ul> {renderedStudents} </ul>
+          </div>
+        }
 
          <form onSubmit={onFormSubmit}>
           <label htmlFor="cohort">Cohort</label>
