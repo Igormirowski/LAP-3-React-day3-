@@ -12,13 +12,21 @@ function App() {
   useEffect(() => {
 
     const fetchStudents = async () => {
-      const { data: {students} } = await axios.get(URL)
-      setStudents(students)
+      // const { data: {students} } = await axios.get(URL) // Other way of doing it 
+      // setStudents(students)
+      const { data } = await axios.get(URL)
+      console.log('I was mouted')
+      setStudents(data.students)
     }
 
     fetchStudents()
 
   }, [])
+
+const renderedStudents = students.map(st => {
+  return (<li>{st.name}</li>)
+  
+})
 
   console.log(students)
 
@@ -26,7 +34,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-       App component
+       <ul>
+         {/* App Component */}
+         {renderedStudents}
+         </ul>
       </header>
     </div>
   );
