@@ -3,16 +3,16 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
-const URL ="https://raw.githubusercontent.com/getfutureproof/fp_study_notes_hello_github/main/auguste/roster.json"
 
 function App() {
   const[students, setStudents] = useState([]) ;
   const[cohort, setCohort] = useState('') ;
   const[search, setSearch] = useState('') ;
-
+  
   useEffect(() => {
-
-    const fetchStudents = async () => {
+    
+    const fetchStudents = async (searchTerm) => { // create function with parameter
+      const url = `https://raw.githubusercontent.com/getfutureproof/fp_study_notes_hello_github/main/${searchTerm}/roster.json`
       // const { data: {students} } = await axios.get(URL) // Other way of doing it 
       // setStudents(students)
       const { data } = await axios.get(URL)
@@ -23,6 +23,11 @@ function App() {
     fetchStudents()
 
   }, [])
+
+  // 3 scenarios:
+  // nothing => useEffect will run like crazy
+  // [] => useEffect will run oncuechange
+  // [search, term] => use effect will run everytime the value changes
 
 const renderedStudents = students.map(st => {
   return (
