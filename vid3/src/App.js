@@ -35,12 +35,14 @@ try {
 
   }
 
-  setTimeout(() => {
+  const timeoutID = setTimeout(() => {
     fetchStudents(search)
     
-  }, 3000);
+  }, 400);
 
-
+  return() => {
+    clearTimeout(timeoutID)
+  }
 
   }, [search])
 
@@ -48,6 +50,8 @@ try {
   // nothing => useEffect will run like crazy
   // [] => useEffect will run oncuechange
   // [search, term] => use effect will run everytime the value changes
+
+console.log(cohort)
 
 const renderedStudents = students.map(st => {
   return (
