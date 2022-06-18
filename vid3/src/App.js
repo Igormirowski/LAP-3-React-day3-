@@ -12,8 +12,8 @@ function App() {
   useEffect(() => {
 
     const fetchStudents = async () => {
-      const { data } = await axios.get(URL)
-      setStudents(data)
+      const { data: {students} } = await axios.get(URL)
+      setStudents(students)
     }
 
     fetchStudents()
