@@ -8,21 +8,35 @@ function App() {
   const[students, setStudents] = useState([]) ;
   const[cohort, setCohort] = useState('') ;
   const[search, setSearch] = useState('') ;
+  const[error, setError] = useState('') ; // state to handle errors 
+  const[statusMessage, setStatusMeassage] = useState('Loading') ; //set status message , if it takes longer we tell component things are loading
   
   useEffect(() => {
     
     const fetchStudents = async (searchTerm) => { // create function with parameter
-      const url = `https://raw.githubusercontent.com/getfutureproof/fp_study_notes_hello_github/main/${searchTerm}/roster.json`
-      // const { data: {students} } = await axios.get(URL) // Other way of doing it 
-      // setStudents(students)
-      const { data } = await axios.get(URL)
-      console.log('I was mouted')
-      setStudents(data.students)
+      searchTerm ||= 'auguste' // if the value is 0 please allocate 'auguste' instead
+      // searchTerm = searchTerm ? searchTerm : 'auguste'
+try {
+
+  const url = `https://raw.githubusercontent.com/getfutureproof/fp_study_notes_hello_github/main/${searchTerm}/roster.json`
+  // const { data: {students} } = await axios.get(URL) // Other way of doing it 
+  // setStudents(students)
+  const { data } = await axios.get(url)
+  console.log('I was mouted')
+  setStudents(data.students)
+  setStatusMeassage('')
+} catch (err) {
+  console.log(err)
+  setError(err)
+  setStatusMeassage('Loading...')
+
     }
 
-    fetchStudents()
+  }
 
-  }, [])
+    fetchStudents(search)
+
+  }, [search])
 
   // 3 scenarios:
   // nothing => useEffect will run like crazy
