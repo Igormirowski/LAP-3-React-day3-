@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
@@ -7,7 +7,16 @@ const URL ="https://raw.githubusercontent.com/getfutureproof/fp_study_notes_hell
 
 function App() {
   useEffect(() => {
-     const response = axios.get(URL)
+
+
+    const fetchStudents = async () => {
+
+      const {data} = await axios.get(URL)
+   
+      console.log(data)
+    }
+    fetchStudents()
+
   }, [])
   return (
     <div className="App">
