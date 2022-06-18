@@ -34,7 +34,12 @@ try {
 
   }
 
+  setTimeout(() => {
     fetchStudents(search)
+    
+  }, 3000);
+
+
 
   }, [search])
 
